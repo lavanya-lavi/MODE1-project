@@ -1,0 +1,69 @@
+﻿@model IEnumerable<OSEntitiesLib.Products>
+
+@{
+    ViewBag.Title = "GetProductsByName";
+}
+
+
+<div align="center" style="background-color:palegreen;color:white">
+    <h1>@Html.ActionLink("Online Shopping", "Index")</h1><br />
+    <form method="post" action="GetProductsByName">
+        <center>
+            
+            <input type="text" name="productname" placeholder="Search products" width="200" />
+            <input type="submit" value="search" /><br />
+        </center>
+    </form>
+</div>
+<div align="center" style="background-color: papayawhip;color: black">
+
+    <table class="table">
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>*@
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    <a href="GetProductDetailsById?id=@item.ProductId">
+                        <img src="~/images/@item.Picture" width="200" height="200" />
+                    </a>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Content)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
+                    </td>*@
+            </tr>
+        }
+
+    </table>
+    </div>

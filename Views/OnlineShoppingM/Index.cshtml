@@ -1,0 +1,85 @@
+﻿@model IEnumerable<OSEntitiesLib.ProductCategory>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<div align="center" style="background-color:palegreen;color:white">
+    <h1>@Html.ActionLink("Online Shopping", "Index")</h1>
+    <h5>@Html.ActionLink("MyCart","ViewCart")</h5>
+     <form method="post" action="GetProductsByName">
+         <center>
+          @*<img width="50" height="50" src="~/images/cart.jpg"/>*@
+           <input type="text" name="productname" placeholder="Search products" width="200" />
+           <input type="submit" value="search" /><br />
+          </center>
+     </form>
+</div>
+
+    @foreach (var item in Model)
+    { 
+  <form method="get" action="~/OnlineshoppingM/GetProductsByCategoryName">
+    <a href="GetProductsByCategoryName?@item.CategoryId&cname=@item.CategoryName">
+        @Html.DisplayFor(modelItem => item.CategoryName)
+
+    </a>
+  </form>                    
+    }
+
+
+<div align="center" style="background-color:cadetblue;color:black">
+
+    <h1>Home Page</h1>
+    <img src="~/images/onlineshopping.jpg" width="800" height="500" />
+</div>
+
+@*<table class="table">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <form method="get" action="~/Onlineshopping/GetProductsByCName">
+                        <a href="GetProductsByCName?@item.CategoryId&cname=@item.CategoryName">
+                            @Html.DisplayFor(modelItem => item.CategoryName)<br />
+
+                        </a>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>*@
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryName)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+    </table>*@

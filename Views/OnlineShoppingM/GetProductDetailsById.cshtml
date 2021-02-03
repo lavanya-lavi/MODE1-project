@@ -1,0 +1,55 @@
+﻿@model OSEntitiesLib.Products
+
+@{
+    ViewBag.Title = "GetProductDetailsById";
+}
+
+
+<div align="center" style="background-color:palegreen;color:black">
+    <h1>@Html.ActionLink("Online Shopping", "Index")</h1><br />
+    <form method="post" action="GetProductsByName">
+        <center>
+            @*<img width="50" height="50" src="~/images/cart.jpg"/>*@
+            <input type="text" name="productname" placeholder="Search products" width="200" />
+            <input type="submit" value="search" /><br />
+        </center>
+    </form>
+</div>
+<div align="center" style="background-color:papayawhip;color:black">
+    @using (Html.BeginForm("AddToCarts", "OnlineShoppingM"))
+    {
+        <form method="post" action="GetProductDetailsById">
+            <table>
+                <tr>
+                    <td style="color:black">
+                        <h2> Product Details</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="~/images/@Model.Picture" width="200" height="200" />
+                    </td>
+                    <td>
+                        <b>Product Name</b> : @Html.DisplayFor(model => model.ProductName)<br />
+
+                        <b>Price</b> : @Html.DisplayFor(model => model.Price)<br />
+                        <b>Content</b> : @Html.Raw(Model.Content)<br />
+
+                    </td>
+                </tr>
+            
+        <tr>
+        <td>
+            <div>
+                @Html.ActionLink("Add To Cart", "AddToCarts", new { id = Model.ProductId, name = Model.ProductName }, new { @class = "btn btn-primary" })
+            </div>
+        </td>
+            </tr>
+        </table>
+        </form>
+
+    }
+</div>
+
+
+
